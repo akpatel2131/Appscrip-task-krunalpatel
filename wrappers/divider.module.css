@@ -1,0 +1,9 @@
+.root {
+  background-color: var(--color-grey-l1);
+  border: 0;
+}
+
+.isHorizontal {
+    width: var(--full-size);
+    height: 1px;
+}
