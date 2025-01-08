@@ -72,7 +72,7 @@
 
   background-color: var(--color-canvas);
   color: var(--color-ink);
-  height: 100vh;
+  height: var(--full-size);
 }
 
 .app button {
@@ -84,4 +84,29 @@
 
 .app button:hover {
   color: gray;
+}
+
+.discriptionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ye-spacing-rem-normal);
+  align-items: center;
+  margin: var(--ye-spacing-rem-xhuge) 0;
+}
+
+.discriptionHeader {
+  font-size: var(--ye-font-size-xlarge);
+  font-weight: var(--ye-font-weight-semibold);
+  letter-spacing: 1;
+  text-transform: uppercase;
+}
+
+.discriptionSubtitle {
+  max-width: 400px;
+  text-align: center;
+  color:  #7d7e80 ;
+}
+
+.container {
+  padding: 0 var(--ye-spacing-rem-large);
 }

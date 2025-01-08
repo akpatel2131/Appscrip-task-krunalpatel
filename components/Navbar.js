@@ -6,7 +6,6 @@ import cart from "../images/cart.svg";
 import nextOrSource from "../tools/nextOrSource";
 import ToggleWrapper from "../wrappers/ToggleWrapper";
 import useBreakpoints from "../tools/useBreakPoints";
-import Divider from "../wrappers/Divider";
 import { IconMenu2 } from "@tabler/icons-react";
 
 import styles from "./navbar.module.css";
@@ -70,7 +69,6 @@ export default function Navbar() {
           </button>
         ))}
       </ToggleWrapper>
-      <Divider />
     </div>
   );
 }

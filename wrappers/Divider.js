@@ -3,7 +3,7 @@ import React from "react";
 import {clsx} from "clsx"
 
 
-export default function Divider({ className }) {
+export default function Divider({ className="" }) {
   return React.createElement(
     "div",
     {
