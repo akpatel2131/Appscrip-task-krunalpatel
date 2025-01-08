@@ -55,54 +55,56 @@ export default function Collapse({
   return (
     <div className={clsx(styles.container, innerClassNames?.container)}>
       {items.map((item) => (
-        <div
-          className={clsx(
-            styles.panel,
-            innerClassNames?.panel,
-            {
-              [styles.activeItem]: localOpenKeys.includes(item.key),
-            },
-            localOpenKeys.includes(item.key) && innerClassNames?.activeItem
-          )}
-          key={item.key}
-        >
-          <button
+        <>
+          <div
             className={clsx(
-              styles.wrapper,
-              innerClassNames?.wrapper,
-              item.noExpand && styles.noExpand
+              styles.panel,
+              innerClassNames?.panel,
+              {
+                [styles.activeItem]: localOpenKeys.includes(item.key),
+              },
+              localOpenKeys.includes(item.key) && innerClassNames?.activeItem
             )}
-            onClick={() => {
-              if (!item.noExpand) {
-                toggleCollapse(item.key);
-              }
-            }}
-            variant="borderless"
+            key={item.key}
           >
-            <div
+            <button
               className={clsx(
-                styles.headerContainer,
-                innerClassNames?.headerContainer,
-                {
-                  [styles.arrowPosition]: arrowPosition === "start",
-                }
+                styles.wrapper,
+                innerClassNames?.wrapper,
+                item.noExpand && styles.noExpand
               )}
+              onClick={() => {
+                if (!item.noExpand) {
+                  toggleCollapse(item.key);
+                }
+              }}
+              variant="borderless"
             >
-              <div className={clsx(styles.header, innerClassNames?.header)}>
-                {item.header}
+              <div
+                className={clsx(
+                  styles.headerContainer,
+                  innerClassNames?.headerContainer,
+                  {
+                    [styles.arrowPosition]: arrowPosition === "start",
+                  }
+                )}
+              >
+                <div className={clsx(styles.header, innerClassNames?.header)}>
+                  {item.header}
+                </div>
+                <IconChevronDown
+                  className={clsx(styles.dropdownIcon, innerClassNames?.icon)}
+                />
               </div>
-              <IconChevronDown
-                className={clsx(styles.dropdownIcon, innerClassNames?.icon)}
-              />
-            </div>
-          </button>
-          {!item.noExpand && localOpenKeys.includes(item.key) && (
-            <div className={clsx(styles.content, innerClassNames?.content)}>
-              {item.children}
-            </div>
-          )}
+            </button>
+            {!item.noExpand && localOpenKeys.includes(item.key) && (
+              <div className={clsx(styles.content, innerClassNames?.content)}>
+                {item.children}
+              </div>
+            )}
+          </div>
           <Divider />
-        </div>
+        </>
       ))}
     </div>
   );

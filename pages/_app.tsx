@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
-import Product from "../components/Product"
+import Product from "../components/Product";
+import Footer from "../components/Footer";
 import "@/styles/globals.css";
 import styles from "./app.module.css";
 import Divider from "../wrappers/Divider";
@@ -22,6 +23,7 @@ export default function App() {
         <Divider />
         <Product />
       </div>
+      <Footer />
     </div>
   );
 }
