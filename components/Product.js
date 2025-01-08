@@ -1,7 +1,7 @@
 import { clsx } from "clsx";
 import styles from "./product.module.css";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import Divider from "@/wrappers/Divider";
 import {
   IconChevronRight,

@@ -22,6 +22,16 @@
   font-weight: var(--ye-font-weight-black);
 }
 
+.language {
+  display: flex;
+  gap: var(--ye-spacing-rem-tiny);
+  align-items: center;
+}
+
+.downArrow {
+  width: var(--ye-font-size-small);
+}
+
 .navActionContainer {
   display: flex;
   gap: var(--ye-spacing-rem-xsmall);

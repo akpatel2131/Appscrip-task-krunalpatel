@@ -1,6 +1,6 @@
 import logo from "../images/Logo.svg";
 import search from "../images/search.svg";
-import language from "../images/language.svg";
+import { IconChevronDown } from "@tabler/icons-react";
 import profile from "../images/profile.svg";
 import heart from "../images/heart.svg";
 import cart from "../images/cart.svg";
@@ -60,6 +60,7 @@ export default function Navbar() {
               <img className={styles.images} src={item.image} alt={item.alt} />
             </button>
           ))}
+          {!isMobile && <button className={styles.language}>ENG <IconChevronDown className={styles.downArrow} /></button>}
         </div>
       </div>
       <ToggleWrapper showItems={isMobile ? toggleOption : true}>

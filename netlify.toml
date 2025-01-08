@@ -1,8 +1,7 @@
 [build]
   base = ""
-  publish = "build"
+  publish = ".next"
   command = "CI=false npm run build"
-
 
 [[redirects]]
   from = "/*"
