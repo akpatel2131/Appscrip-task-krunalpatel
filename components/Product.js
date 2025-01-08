@@ -1,7 +1,7 @@
 import { clsx } from "clsx";
 import styles from "./product.module.css";
 
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Divider from "@/wrappers/Divider";
 import {
   IconChevronRight,
@@ -9,6 +9,9 @@ import {
   IconChevronDown,
 } from "@tabler/icons-react";
 import Filters from "./Filters";
+import ProductCard from "./ProductCard";
+import productCardData from "../data/mockData";
+import { useEffectOnce } from "react-use";
 
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,6 +66,32 @@ const Dropdown = () => {
 
 export default function Product() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffectOnce(() => {
+    if(!localStorage.getItem("data")) {
+      localStorage.setItem("data", JSON.stringify(productCardData));
+        setData(productCardData)
+    }else {
+      const productData = localStorage.getItem("data")
+      setData(JSON.parse(productData))
+    }
+  })
+
+  const handleLiked = useCallback((key) => {
+    const product = data.map((item) => {
+      if(item.key === key) {
+        return {
+          ...item,
+          isLiked: !item.isLiked
+        }
+      }
+      return item
+    })
+
+    localStorage.setItem("data", JSON.stringify(product));
+    setData(product)
+  },[data])
 
   return (
     <div className={styles.productWrapper}>
@@ -90,8 +119,10 @@ export default function Product() {
       </div>
       <Divider />
       <div className={styles.productSection}>
-        <Filters />
-        <div className={styles.productContainer}></div>
+        {/* <Filters /> */}
+        <div className={styles.productContainer}>
+          {data.map((item, index) => <ProductCard productData={item} key={index} handleLiked={handleLiked}/>)}
+        </div>
       </div>
     </div>
   );

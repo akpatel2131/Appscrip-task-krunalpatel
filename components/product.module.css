@@ -45,6 +45,9 @@
 
 .productContainer {
   flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ye-spacing-rem-small);
 }
 
 /* -----DropDown---- */
