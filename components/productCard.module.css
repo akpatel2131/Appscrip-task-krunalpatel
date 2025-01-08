@@ -50,3 +50,21 @@
     fill: red;
     color: red;
 }
+
+@media only screen and (max-width: 600px) {
+    .productCard {
+      max-width: 150px;
+    }
+
+    .productName {
+        font-size: var(--ye-font-size-small);
+    }
+
+    .siginSubtitle {
+        font-size: var(--ye-font-size-xsmall);
+    }
+
+    .likeButton {
+        margin-bottom: var(--ye-spacing-rem-tiny);
+    }
+  }

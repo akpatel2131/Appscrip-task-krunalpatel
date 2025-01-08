@@ -2,6 +2,7 @@ import logo from "../images/Logo.svg";
 import search from "../images/search.svg";
 import language from "../images/language.svg";
 import profile from "../images/profile.svg";
+import heart from "../images/heart.svg";
 import cart from "../images/cart.svg";
 import nextOrSource from "../tools/nextOrSource";
 import ToggleWrapper from "../wrappers/ToggleWrapper";
@@ -22,17 +23,19 @@ export default function Navbar() {
       alt: "search",
     },
     {
+      image: nextOrSource(heart),
+      alt: "heart",
+    },
+    {
       image: nextOrSource(cart),
       alt: "cart",
     },
-    {
-      image: nextOrSource(profile),
-      alt: "profile",
-    },
-    {
-      image: nextOrSource(language),
-      alt: "language",
-    },
+    ...(isMobile ? [] : [
+      {
+        image: nextOrSource(profile),
+        alt: "profile",
+      }
+    ])
   ];
 
   return (
@@ -59,15 +62,14 @@ export default function Navbar() {
           ))}
         </div>
       </div>
-      <ToggleWrapper
-        className={styles.navOptionsContainer}
-        showItems={isMobile ? toggleOption : true}
-      >
-        {TOP_NAV_OPTIONS.map((item, index) => (
-          <button key={index} className={styles.navOptions}>
-            {item}
-          </button>
-        ))}
+      <ToggleWrapper showItems={isMobile ? toggleOption : true}>
+        <div className={styles.navOptionsContainer}>
+          {TOP_NAV_OPTIONS.map((item, index) => (
+            <button key={index} className={styles.navOptions}>
+              {item}
+            </button>
+          ))}
+        </div>
       </ToggleWrapper>
     </div>
   );

@@ -7,3 +7,9 @@
     width: var(--full-size);
     height: 1px;
 }
+
+  .isVertical {
+    align-self: stretch;
+    width: 1px;
+    min-height: var(--full-size);
+  }

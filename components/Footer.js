@@ -89,14 +89,14 @@ export default function Footer() {
             <button className={styles.subscribeButton}>Subscribe</button>
           </div>
         </div>
-        <Divider />
+        {isMobile && <Divider />}
         <div className={styles.contactContainer}>
           <div className={styles.contactUsTitle}>Contact Us</div>
           <div className={styles.contact}>
             <div>+44 221 133 5360</div>
             <div>customercare@mettamuse.com</div>
           </div>
-          <Divider className={styles.divider} />
+          {isMobile && <Divider className={styles.divider} />}
           <div className={styles.contactUsTitle}>Currency</div>
           <div className={styles.contact}>
             <div className={styles.usaContainer}>
@@ -107,14 +107,16 @@ export default function Footer() {
               />
               + USD
             </div>
-            {!isMobile && <div>
-              Transactions will be completed in Euros and a currency reference
-              is available on hover.
-            </div>}
+            {!isMobile && (
+              <div>
+                Transactions will be completed in Euros and a currency reference
+                is available on hover.
+              </div>
+            )}
           </div>
         </div>
       </div>
-      <Divider className={styles.footerDivider}/>
+      <Divider className={styles.footerDivider} />
       <div className={styles.linkSection}>
         {!isMobile && (
           <>
@@ -129,9 +131,14 @@ export default function Footer() {
           </>
         )}
 
-        {isMobile && <Collapse items={collapseContent} innerClassNames={{
-            wrapper: styles.collapseWrapper
-        }} />}
+        {isMobile && (
+          <Collapse
+            items={collapseContent}
+            innerClassNames={{
+              wrapper: styles.collapseWrapper,
+            }}
+          />
+        )}
         <div className={styles.quickLinkContainer}>
           {!isMobile && (
             <div className={styles.socialMediaContainer}>
@@ -143,13 +150,19 @@ export default function Footer() {
             <div className={styles.linkHeaders}>mettā muse Accepts</div>
             <div className={styles.socialMedia}>
               {PAY_OPTIONS.map((item, index) => (
-                <img src={nextOrSource(item)} key={index} className={styles.payImages} />
+                <img
+                  src={nextOrSource(item)}
+                  key={index}
+                  className={styles.payImages}
+                />
               ))}
             </div>
           </div>
         </div>
       </div>
-      <div className={styles.copyrightText}>Copyright © 2023 mettamuse. All rights reserved.</div>
+      <div className={styles.copyrightText}>
+        Copyright © 2023 mettamuse. All rights reserved.
+      </div>
     </div>
   );
 }

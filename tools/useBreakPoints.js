@@ -45,11 +45,7 @@ const getWindowWidth = () => {
   return isBrowser ? window.innerWidth : 0;
 };
 
-/**
- * @description
- * Hook to get the current breakpoints and width of the window
- * it is optimized to avoid unnecessary re-renders due to window resize
- */
+
 export default function useBreakpoints({
   throttleTime,
 }= {}) {
@@ -73,7 +69,6 @@ export default function useBreakpoints({
       setWidth(newWidth);
     }, throttleTime ?? DEBOUNCE.fast);
 
-    // called initially to set initial state
     handleResize();
 
     window.addEventListener("resize", handleResize);

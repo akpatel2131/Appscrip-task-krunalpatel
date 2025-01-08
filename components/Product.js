@@ -12,6 +12,8 @@ import Filters from "./Filters";
 import ProductCard from "./ProductCard";
 import productCardData from "../data/mockData";
 import { useEffectOnce } from "react-use";
+import useBreakpoints from "../tools/useBreakPoints";
+import ToggleWrapper from "@/wrappers/ToggleWrapper";
 
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,66 +64,86 @@ const Dropdown = () => {
   );
 };
 
-
-
 export default function Product() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [data, setData] = useState([]);
+  const { isMobile } = useBreakpoints();
 
   useEffectOnce(() => {
-    if(!localStorage.getItem("data")) {
+    if (!localStorage.getItem("data")) {
       localStorage.setItem("data", JSON.stringify(productCardData));
-        setData(productCardData)
-    }else {
-      const productData = localStorage.getItem("data")
-      setData(JSON.parse(productData))
+      setData(productCardData);
+    } else {
+      const productData = localStorage.getItem("data");
+      setData(JSON.parse(productData));
     }
-  })
+  });
 
-  const handleLiked = useCallback((key) => {
-    const product = data.map((item) => {
-      if(item.key === key) {
-        return {
-          ...item,
-          isLiked: !item.isLiked
+  const handleLiked = useCallback(
+    (key) => {
+      const product = data.map((item) => {
+        if (item.key === key) {
+          return {
+            ...item,
+            isLiked: !item.isLiked,
+          };
         }
-      }
-      return item
-    })
+        return item;
+      });
 
-    localStorage.setItem("data", JSON.stringify(product));
-    setData(product)
-  },[data])
+      localStorage.setItem("data", JSON.stringify(product));
+      setData(product);
+    },
+    [data]
+  );
 
   return (
     <div className={styles.productWrapper}>
       <div className={styles.productNav}>
-        <div className={styles.productCount}>
-          <div className={styles.count}>3240 Items</div>
+        {!isMobile ? (
+          <div className={styles.productCount}>
+            <div className={styles.count}>3240 Items</div>
+            <button
+              className={styles.toggleFilterButton}
+              onClick={() => setIsFilterOpen((prev) => !prev)}
+            >
+              {isFilterOpen ? (
+                <>
+                  <IconChevronLeft className={styles.filterArrow} stroke={2} />{" "}
+                  Hide Filter
+                </>
+              ) : (
+                <>
+                  show filter
+                  <IconChevronRight className={styles.filterArrow} stroke={2} />
+                </>
+              )}{" "}
+            </button>
+          </div>
+        ) : (
           <button
-            className={styles.toggleFilterButton}
-            onClick={() => setIsFilterOpen(!isFilterOpen)}
+            className={styles.filterHeader}
+            onClick={() => setIsFilterOpen((prev) => !prev)}
           >
-            {!isFilterOpen ? (
-              <>
-                <IconChevronLeft className={styles.filterArrow} stroke={2} />{" "}
-                Hide Filter
-              </>
-            ) : (
-              <>
-                show filter
-                <IconChevronRight className={styles.filterArrow} stroke={2} />
-              </>
-            )}{" "}
+            Filters
           </button>
-        </div>
+        )}
+        {isMobile && <Divider vertical />}
         <Dropdown />
       </div>
       <Divider />
       <div className={styles.productSection}>
-        {/* <Filters /> */}
+        <ToggleWrapper showItems={isFilterOpen}>
+          <Filters />
+        </ToggleWrapper>
         <div className={styles.productContainer}>
-          {data.map((item, index) => <ProductCard productData={item} key={index} handleLiked={handleLiked}/>)}
+          {data.map((item, index) => (
+            <ProductCard
+              productData={item}
+              key={index}
+              handleLiked={handleLiked}
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -1,8 +1,13 @@
 .filterContainer {
-  flex: 1;
+  min-width: 200px;
 }
 
-/* Collapse */
+.customizeOption {
+  display: flex;
+  gap: var(--ye-spacing-rem-small);
+  align-items: center;
+  margin: var(--ye-spacing-rem-small) 0 var(--ye-spacing-rem-large);
+}
 
 .collpaseHeaderContainer {
   display: flex;
@@ -48,8 +53,8 @@
 }
 
 .checkbox {
-  appearance: none; /* Reset browser's default styling */
-  -webkit-appearance: none; /* For WebKit browsers */
+  appearance: none; 
+  -webkit-appearance: none;
   width: var(--ye-font-size-normal);
   height: var(--ye-font-size-normal);
   border: 1px solid var(--color-ink);
@@ -60,7 +65,7 @@
 
 .checkbox:checked {
   background-color: #28a9f0;
-  border: none; /* Set background color when checked */
+  border: none;
 }
 
 .checkbox:checked::after {

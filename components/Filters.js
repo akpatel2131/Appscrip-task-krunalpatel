@@ -1,6 +1,7 @@
 import styles from "./filter.module.css";
 import React, { useState, useMemo, useCallback } from "react";
 import Collapse from "../wrappers/Collapse";
+import Divider from "@/wrappers/Divider";
 
 const filters = {
   1: ["men", "woman", "Baby&kids"],
@@ -54,7 +55,6 @@ function CollapseChildren({
   );
 
   const handleClearAll = useCallback(() => {
-    console.log("call clear all");
     setSelectedFilters({
       ...selectedFilters,
       [itemKey]: null,
@@ -96,6 +96,7 @@ function CollapseChildren({
 
 export default function Filter() {
   const [selectedFilters, setSelectedFilters] = useState({});
+  const [isChecked, setIsChecked] = useState(false);
 
   const collapseContent = useMemo(() => {
     return [
@@ -222,8 +223,19 @@ export default function Filter() {
       },
     ];
   }, [selectedFilters]);
+  
   return (
     <div className={styles.filterContainer}>
+      <div className={styles.customizeOption}>
+        <input
+          className={styles.checkbox}
+          type="checkbox"
+          onClick={() => setIsChecked((prev) => !prev)}
+          checked={isChecked}
+        />
+        <div className={styles.customizeTitle}>Customizble</div>
+      </div>
+      <Divider />
       <Collapse items={collapseContent} />
     </div>
   );

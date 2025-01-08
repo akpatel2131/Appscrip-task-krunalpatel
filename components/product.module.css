@@ -48,16 +48,21 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--ye-spacing-rem-small);
+  justify-content: space-around;
 }
 
-/* -----DropDown---- */
-/* Container */
+.filterHeader {
+  font-size: var(--ye-spacing-rem-normal);
+  text-transform: uppercase;
+  font-weight: var(--ye-font-weight-bold);
+  flex: 1;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
 }
 
-/* Toggle Button */
 .dropdownToggle {
   background: none;
   border: none;
@@ -74,7 +79,6 @@
   margin-left: var(--ye-spacing-rem-tiny);
 }
 
-/* Dropdown Menu */
 .dropdownMenu {
   position: absolute;
   top: 100%;
@@ -113,7 +117,6 @@
   color: black;
 }
 
-/* Additional Styling */
 .dropdownMenu::before {
   content: "";
   position: absolute;
@@ -123,4 +126,19 @@
   border-style: solid;
   border-color: transparent transparent white transparent;
 }
+
+@media only screen and (max-width: 600px) {
+  .productContainer {
+    justify-content: center;
+  }
+
+  .dropdown {
+    flex: 1;
+  }
+
+  .productSection {
+    flex-direction: column;
+  }
+}
+
 
